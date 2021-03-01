@@ -8,8 +8,6 @@ name: $(Build.BuildId)_$(Date:yyyy-MM-dd).$(Rev:r)
 pool:
   vmImage: 'macos-latest'
 
-stages: 
-
 steps:
 - task: Gradle@2
   inputs:
