@@ -10,7 +10,7 @@ stages:
 - stage: stage1
   displayName: stage1 for Android
   jobs:
-  - job: Trigger Build
+  - job: Trigger_Build
     displayName: Job1 for build
     steps:
     - task: Gradle@2
@@ -41,7 +41,7 @@ stages:
 - stage: stage2
   displayName: stage2 for Android
   jobs:
-  - job: Trigger Build
+  - job: Trigger_Build
     displayName: Job1 for build stage2
     steps:
     - task: Gradle@2
