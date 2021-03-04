@@ -8,7 +8,7 @@ pool:
   vmImage: 'macos-latest'
 stages:
 - stage: stage1
-  displayName: stage1 for Android
+  displayName: First stage for Android
   jobs:
   - job: Trigger_Build
     displayName: Job1 for build
