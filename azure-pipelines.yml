@@ -29,9 +29,9 @@ stages:
       inputs:
         apkFiles: '**/*.apk'
         apksignerKeystoreFile: 'keshav-test.keystore'
-        apksignerKeystorePassword: 'Apple!990'
+        apksignerKeystorePassword: '$(keystorepass)'
         apksignerKeystoreAlias: 'testkeystore'
-        apksignerKeyPassword: 'Apple!990'
+        apksignerKeyPassword: '$(keystorepass)'
         zipalign: false
     - task: AppCenterTest@1
       inputs:
