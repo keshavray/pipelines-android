@@ -24,14 +24,13 @@ stages:
         publishJUnitResults: true
         testResultsFiles: '**/TEST-*.xml'
         tasks: 'assembleDebug test'
-      displayName: gradlew assembleDebug test
+      displayName: gradlew assembleDebug testx
     - task: AndroidSigning@3
       inputs:
         apkFiles: '**/*.apk'
         apksignerKeystoreFile: 'keshav-test.keystore'
         apksignerKeystorePassword: 'Apple!990'
-        apksignerKeystoreAlias: 'testkeystore'
-        apksignerKeyPassword: 'Apple!990'
+        zipalign: false
     - task: CopyFiles@2
       inputs:
         contents: '**/*.apk'
