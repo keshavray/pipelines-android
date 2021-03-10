@@ -30,6 +30,8 @@ stages:
         apkFiles: '**/*.apk'
         apksignerKeystoreFile: 'keshav-test.keystore'
         apksignerKeystorePassword: 'Apple!990'
+        apksignerKeystoreAlias: 'testkeystore'
+        apksignerKeyPassword: 'Apple!990'
         zipalign: false
     - task: CopyFiles@2
       inputs:
