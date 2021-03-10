@@ -33,6 +33,17 @@ stages:
         apksignerKeystoreAlias: 'testkeystore'
         apksignerKeyPassword: 'Apple!990'
         zipalign: false
+    - task: AppCenterTest@1
+      inputs:
+        appFile: 'app-prod-debug.apk'
+        artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
+        frameworkOption: 'appium'
+        appiumBuildDirectory: 'build.artifactStagingDirectory'
+        credentialsOption: 'serviceEndpoint'
+        serverEndpoint: 'Android Service Connection'
+        appSlug: 'krkeshavray/andriod-app'
+        devices: 'testdevice'
+        localeOption: 'en_GB'
     - task: CopyFiles@2
       inputs:
         contents: '**/*.apk'
