@@ -25,7 +25,13 @@ stages:
         testResultsFiles: '**/TEST-*.xml'
         tasks: 'assembleDebug test'
       displayName: gradlew assembleDebug test
-
+    - task: AndroidSigning@3
+      inputs:
+        apkFiles: '**/*.apk'
+        apksignerKeystoreFile: 'keshav-test.keystore'
+        apksignerKeystorePassword: 'Apple!990'
+        apksignerKeystoreAlias: 'testkeystore'
+        apksignerKeyPassword: 'Apple!990'
     - task: CopyFiles@2
       inputs:
         contents: '**/*.apk'
@@ -38,34 +44,4 @@ stages:
         artifactName: 'drop'
         artifactType: 'container'
       displayName: Publish artifacts
-- stage: stage2
-  displayName: stage2 for Android
-  jobs:
-  - job: Trigger_Build
-    displayName: Job1 for build stage2
-    steps:
-    - task: Gradle@2
-      inputs:
-        workingDirectory: ''
-        gradleWrapperFile: 'gradlew'
-        gradleOptions: '-Xmx3072m'
-        javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '1.8'
-        jdkArchitectureOption: 'x64'
-        publishJUnitResults: true
-        testResultsFiles: '**/TEST-*.xml'
-        tasks: 'assembleDebug test'
-      displayName: gradlew assembleDebug test
-
-    - task: CopyFiles@2
-      inputs:
-        contents: '**/*.apk'
-        targetFolder: '$(build.artifactStagingDirectory)'
-      displayName: Copy .apk files to artifact staging directory
-
-    - task: PublishBuildArtifacts@1
-      inputs:
-        pathToPublish: '$(build.artifactStagingDirectory)'
-        artifactName: 'drop'
-        artifactType: 'container'
-      displayName: Publish artifacts
+    
