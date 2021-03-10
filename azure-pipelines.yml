@@ -25,14 +25,7 @@ stages:
         testResultsFiles: '**/TEST-*.xml'
         tasks: 'assembleDebug test'
       displayName: gradlew assembleDebug testx
-    - task: AndroidSigning@3
-      inputs:
-        apkFiles: '**/*.apk'
-        apksignerKeystoreFile: 'keshav-test.keystore'
-        apksignerKeystorePassword: '$(keystorepass)'
-        apksignerKeystoreAlias: 'testkeystore'
-        apksignerKeyPassword: '$(keystorepass)'
-        zipalign: false
+
     - task: AppCenterTest@1
       inputs:
         appFile: '**/*.apk'
