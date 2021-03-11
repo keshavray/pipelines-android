@@ -28,7 +28,7 @@ stages:
 
     - task: AppCenterTest@1
       inputs:
-        appFile: '**/*.apk'
+        appFile: '**/app-prod-debug.apk'
         artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
         frameworkOption: 'appium'
         appiumBuildDirectory: 'build.artifactStagingDirectory'
