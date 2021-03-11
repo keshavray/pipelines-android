@@ -29,7 +29,7 @@ stages:
       inputs:
         apkFiles: '**/*.apk'
         jarsign: true
-        jarsignerKeystoreFile: 'keshav-test.keystore '
+        jarsignerKeystoreFile: 'keshav-test.keystore'
         jarsignerKeystorePassword: 'Apple!990'
         jarsignerKeystoreAlias: 'testkeystore'
         jarsignerKeyPassword: 'Apple!990'
