@@ -26,17 +26,15 @@ stages:
         tasks: 'assembleDebug test'
       displayName: gradlew assembleDebug testx
 
-    - task: AppCenterTest@1
+    - task: AppCenterDistribute@3
       inputs:
-        appFile: '**/app-prod-debug.apk'
-        artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
-        frameworkOption: 'appium'
-        appiumBuildDirectory: '$(build.artifactStagingDirectory)'
-        credentialsOption: 'serviceEndpoint'
         serverEndpoint: 'Android Service Connection'
         appSlug: 'krkeshavray/andriod-app'
-        devices: 'testdevice'
-        localeOption: 'en_GB'
+        appFile: '**/app-prod-debug.apk'
+        symbolsOption: 'Android'
+        releaseNotesOption: 'input'
+        releaseNotesInput: 'Release notes'
+        destinationType: 'groups'
     - task: CopyFiles@2
       inputs:
         contents: '**/*.apk'
