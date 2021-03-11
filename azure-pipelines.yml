@@ -25,13 +25,21 @@ stages:
         testResultsFiles: '**/TEST-*.xml'
         tasks: 'assembleDebug test'
       displayName: gradlew assembleDebug testx
-
+    - task: AndroidSigning@2
+      inputs:
+        apkFiles: '**/*.apk'
+        jarsign: true
+        jarsignerKeystoreFile: 'keshav-test.keystore '
+        jarsignerKeystorePassword: 'Apple!990'
+        jarsignerKeystoreAlias: 'testkeystore'
+        jarsignerKeyPassword: 'Apple!990'
+        zipalign: true
     - task: AppCenterTest@1
       inputs:
         appFile: '**/app-prod-debug.apk'
         artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest'
         frameworkOption: 'appium'
-        appiumBuildDirectory: 'build.artifactStagingDirectory'
+        appiumBuildDirectory: '$(build.artifactStagingDirectory)'
         credentialsOption: 'serviceEndpoint'
         serverEndpoint: 'Android Service Connection'
         appSlug: 'krkeshavray/andriod-app'
