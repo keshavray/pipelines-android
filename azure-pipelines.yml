@@ -28,7 +28,7 @@ stages:
         script: |
           version=$(grep "versionName" ./app/build.gradle | sed -n '1p' | awk -F'"' '$0=$2')          
           echo $version  
-          echo '##vso[task.setVariable variable=myVar]$(version)'
+          echo '##vso[task.setVariable variable=myVar]version'
       
     - task: GithubRelease@0 
       displayName: 'Create GitHub Release'      
