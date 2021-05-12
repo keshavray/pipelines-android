@@ -48,7 +48,7 @@ stages:
     - task: GithubRelease@0 
       displayName: 'Create GitHub Release'      
       inputs:
-       gitHubConnection: keshavray
+       gitHubConnection: github.com_keshavray
        repositoryName: keshavray/pipelines-android
        tagSource: manual
        tag: $(Build.BuildNumber)  
