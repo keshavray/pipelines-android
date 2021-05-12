@@ -11,7 +11,7 @@ pr:
      include:
        - master
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Ubuntu-latest'
 stages:
 - stage: stage1
   displayName: First stage for Android
@@ -19,11 +19,21 @@ stages:
   - job: Trigger_Build
     displayName: Job1 for build
     steps:
-    
+
+
     - task: Bash@3
       inputs:
         targetType: 'inline'
         script: |
-          version=$(grep "versionName" build.gradle | sed -n '1p' | awk -F'"' '$0=$2')
+          version=$(grep "versionName" ./app/build.gradle | sed -n '1p' | awk -F'"' '$0=$2')
           
           echo $version
+        workingDirectory: 'pipelines-android/app/'      
+      
+    - task: GithubRelease@0 
+      displayName: 'Create GitHub Release'      
+      inputs:
+       gitHubConnection: github.com_keshavray
+       repositoryName: keshavray/pipelines-android
+       tagSource: manual
+       tag: "Dev-$(version)" 
