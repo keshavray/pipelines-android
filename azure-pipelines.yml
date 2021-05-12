@@ -48,8 +48,8 @@ stages:
     - task: GithubRelease@0 
       displayName: 'Create GitHub Release'      
       inputs:
-       gitHubConnection: zenithworks
-       repositoryName: zenithworks/javaAppWithMaven
+       gitHubConnection: keshavray
+       repositoryName: keshavray/pipelines-android
        tagSource: manual
        tag: $(Build.BuildNumber)  
    
