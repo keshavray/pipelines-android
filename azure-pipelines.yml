@@ -5,6 +5,14 @@
 
 name: $(Build.BuildId)_$(Date:yyyy-MM-dd).$(Rev:r)
 
+parameters:
+- name: tagValue
+  displayName: The GitHub tag from QA used for build
+  type: string
+  default: ''
+
+variables:
+  tagValue: ${{ parameters.tagValue }}
 pr: 
    branches:
      include:
@@ -51,6 +59,4 @@ stages:
        gitHubConnection: github.com_keshavray
        repositoryName: keshavray/pipelines-android
        tagSource: manual
-       tag: "$(env)-$(Build.BuildNumber)" 
-   
-    
+       tag: "$(tagValue)-$(Build.BuildNumber)" 
