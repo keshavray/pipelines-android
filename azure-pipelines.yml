@@ -39,6 +39,6 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          version=$(grep "versionName" '**/build.gradle' | sed -n '1p' | awk -F'"' '$0=$2')
+          version=$(grep "versionName" '*/build.gradle' | sed -n '1p' | awk -F'"' '$0=$2')
           
           echo $version
