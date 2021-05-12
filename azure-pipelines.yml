@@ -5,7 +5,8 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 name: $(Build.BuildId)_$(Date:yyyy-MM-dd).$(Rev:r)
-
+variables:
+- name: myVar
 pr: 
    branches:
      include:
@@ -28,6 +29,7 @@ stages:
           version=$(grep "versionName" ./app/build.gradle | sed -n '1p' | awk -F'"' '$0=$2')
           
           echo $version  
+          echo '##vso[task.setVariable variable=myVar]$version'
       
     - task: GithubRelease@0 
       displayName: 'Create GitHub Release'      
@@ -35,4 +37,4 @@ stages:
        gitHubConnection: github.com_keshavray
        repositoryName: keshavray/pipelines-android
        tagSource: manual
-       tag: "Dev-$(version)" 
+       tag: "Dev-$(myVar)" 
