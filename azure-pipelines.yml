@@ -45,8 +45,12 @@ stages:
         contents: '**/*.apk'
         targetFolder: '$(build.artifactStagingDirectory)'
       displayName: Copy .apk files to artifact staging directory
-    - task: git-tag-on-release-task@9
+    - task: GithubRelease@0 
+      displayName: 'Create GitHub Release'      
       inputs:
-        staticTagName: "DEV-$(Build.BuildNumber)"
+       gitHubConnection: zenithworks
+       repositoryName: zenithworks/javaAppWithMaven
+       tagSource: manual
+       tag: $(Build.BuildNumber)  
    
     
