@@ -1,4 +1,5 @@
 # Android
+
 # Build your Android project with Gradle.
 # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
@@ -60,3 +61,11 @@ stages:
        repositoryName: keshavray/pipelines-android
        tagSource: manual
        tag: "$(tagValue)-$(Build.BuildNumber)" 
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          version=$(grep "versionName" build.gradle | sed -n '1p' | awk -F'"' '$0=$2')
+          
+          echo $version
+        workingDirectory: 'pipelines-android/app/'
