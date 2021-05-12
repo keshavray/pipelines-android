@@ -45,6 +45,8 @@ stages:
         contents: '**/*.apk'
         targetFolder: '$(build.artifactStagingDirectory)'
       displayName: Copy .apk files to artifact staging directory
-
+    - task: git-tag-on-release-task@9
+      inputs:
+        staticTagName: "DEV-$(Build.BuildNumber)"
    
     
