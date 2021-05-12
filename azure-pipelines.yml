@@ -51,6 +51,6 @@ stages:
        gitHubConnection: github.com_keshavray
        repositoryName: keshavray/pipelines-android
        tagSource: manual
-       tag: "DEV-$(Build.BuildNumber)" 
+       tag: "$(env)-$(Build.BuildNumber)" 
    
     
