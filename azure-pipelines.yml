@@ -35,5 +35,7 @@ stages:
       inputs:
        gitHubConnection: github.com_keshavray
        repositoryName: keshavray/pipelines-android
+       action: create
+       target: '$(Build.SourceVersion)'
        tagSource: manual
        tag: "Dev-$(version)" 
