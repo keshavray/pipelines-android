@@ -5,12 +5,28 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 name: $(Build.BuildId)_$(Date:yyyy-MM-dd).$(Rev:r)
+
+parameters:
+- name: tagValue
+  displayName: The GitHub tag for the build
+  type: string
+  default: ''
+
 variables:
-- name: myVar
-pr: 
-   branches:
-     include:
-       - master
+  tagValue: ${{ parameters.tagValue }}
+
+trigger:
+  branches:
+    include:
+      - main
+  tags:
+    include:
+      - $(tagValue)
+  paths:
+    exclude:
+      - /*
+
+
 pool:
   vmImage: 'Ubuntu-latest'
 stages:
@@ -38,4 +54,4 @@ stages:
        action: create
        target: '$(Build.SourceVersion)'
        tagSource: manual
-       tag: "Dev-$(version)-$(Build.BuildNumber)" 
+       tag: "qa-$(tagValue)" 
