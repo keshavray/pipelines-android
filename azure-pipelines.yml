@@ -48,4 +48,4 @@ stages:
        action: create
        target: '$(Build.SourceVersion)'
        tagSource: manual
-       tag: "ff-$(tagValue)" 
+       tag: "f1-$(tagValue)" 
