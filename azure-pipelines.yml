@@ -18,7 +18,7 @@ variables:
 trigger:
   branches:
     include:
-      - refs/tags/test-Dev-1.0-149_2021-05-27.1
+      - refs/tags/Dev-1.0-149_2021-05-27.1
     exclude:
       - refs/tags/*
       - master/*
