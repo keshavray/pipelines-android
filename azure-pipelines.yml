@@ -21,8 +21,8 @@ trigger:
       - refs/tags/$(tagValue)
     exclude:
       - refs/tags/*
-      - master
-      - keshav
+      - master/*
+      - keshav/*
 
 pool:
   vmImage: 'Ubuntu-latest'
