@@ -19,7 +19,8 @@ trigger:
   branches:
     include:
       - refs/tags/$(tagValue)
-
+    exclude:
+      - refs/tags/*
 
 pool:
   vmImage: 'Ubuntu-latest'
