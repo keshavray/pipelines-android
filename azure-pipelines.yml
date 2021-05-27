@@ -16,7 +16,7 @@ variables:
   tagValue: ${{ parameters.tagValue }}
 
 trigger:
-  branches:
+  tags:
     include:
       - refs/tags/Dev-1.0-149_2021-05-27.1
     exclude:
