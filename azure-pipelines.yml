@@ -18,7 +18,7 @@ variables:
 trigger:
   branches:
     include:
-      - refs/tags/$(tagValue)
+      - refs/tags/test-Dev-1.0-149_2021-05-27.1
     exclude:
       - refs/tags/*
       - master/*
@@ -51,4 +51,4 @@ stages:
        action: create
        target: '$(Build.SourceVersion)'
        tagSource: manual
-       tag: "test-$(tagValue)" 
+       tag: "ff-$(tagValue)" 
