@@ -18,13 +18,7 @@ variables:
 trigger:
   branches:
     include:
-      - master
-  tags:
-    include:
-      - $(tagValue)
-  paths:
-    exclude:
-      - /*
+      - refs/tags/$(tagValue)
 
 
 pool:
