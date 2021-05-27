@@ -16,11 +16,12 @@ variables:
   tagValue: ${{ parameters.tagValue }}
 
 trigger:
-  tags:
+  branches:
     include:
       - refs/tags/Dev-1.0-149_2021-05-27.1
     exclude:
-      - refs/tags/*
+      - refs/heads/*
+      - refs/remotes/*
 pool:
   vmImage: 'Ubuntu-latest'
 stages:
@@ -48,4 +49,4 @@ stages:
        action: create
        target: '$(Build.SourceVersion)'
        tagSource: manual
-       tag: "f1-$(tagValue)" 
+       tag: "f2-$(tagValue)" 
