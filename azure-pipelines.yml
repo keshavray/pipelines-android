@@ -5,6 +5,12 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 name: $(Build.BuildId)_$(Date:yyyy-MM-dd).$(Rev:r)
+pr:
+ autoCancel: true
+ branches:
+   include:
+     - main
+     - feature/*
 
 parameters:
 - name: tagValue
