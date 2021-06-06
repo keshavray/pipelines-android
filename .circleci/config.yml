@@ -24,7 +24,7 @@ jobs:
           command: chmod +x ./gradlew
       - run: 
           name: Set java8 at Default
-          command: export JAVA_HOME=/opt/java/jdk-8
+          command: export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
       - run: 
           name: Adding to the path
           command: export PATH=$JAVA_HOME/bin:$PATH
