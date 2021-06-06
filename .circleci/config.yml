@@ -22,6 +22,9 @@ jobs:
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
+      - run:
+          name: Remove Java 10
+          command: sudo apt-get remove --auto-remove openjdk10 
       - run: 
           name: Set java8 at Default
           command: export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
