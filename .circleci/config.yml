@@ -4,7 +4,7 @@ version: 2.1
 
 # Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 orbs:
-  android: circleci/android@1.0
+  android: circleci/android@1.0.3
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
@@ -12,6 +12,7 @@ jobs:
     # These next lines define the Android machine image executor: https://circleci.com/docs/2.0/executor-types/
     executor:
       name: android/android-machine
+    
 
     environment:
       JVM_OPTS: -Xmx3200m
@@ -23,7 +24,20 @@ jobs:
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
+      - run: 
+          name: Set java8 at Default
+          command: export JAVA_HOME=/opt/java/jdk-8
+      - run: 
+          name: Adding to the path
+          command: export PATH=$JAVA_HOME/bin:$PATH
       # The next step will run the unit tests
+      - android/run-tests:
+          test-command: ./gradlew lint testDebug --continue
+      # Then start the emulator and run the Instrumentation tests!
+      - android/start-emulator-and-run-tests:
+          test-command: ./gradlew connectedDebugAndroidTest
+          system-image: system-images;android-25;google_apis;x86
+
       # And finally run the release build
       - run:
           name: Assemble release build
