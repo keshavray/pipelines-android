@@ -21,4 +21,4 @@ steps:
     tasks: 'build'
   displayName: Gradle Build Task for Dev CI CD
 
-- script: ls -l build/
+- script: ls -l build/generated
