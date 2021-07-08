@@ -1,58 +1,27 @@
-# Android
-
-# Build your Android project with Gradle.
-# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/android
-
 name: $(Build.BuildId)_$(Date:yyyy-MM-dd).$(Rev:r)
-pr:
- autoCancel: true
- branches:
-   include:
-     - main
-     - feature/*
 
-parameters:
-- name: tagValue
-  displayName: The GitHub tag for the build
-  type: string
-  default: ''
+trigger: none
 
-variables:
-  tagValue: ${{ parameters.tagValue }}
+pr: none
 
-trigger:
-  branches:
-    include:
-      - refs/tags/Dev-1.0-149_2021-05-27.1
-    exclude:
-      - refs/heads/*
-      - refs/remotes/*
 pool:
-  vmImage: 'Ubuntu-latest'
-stages:
-- stage: stage1
-  displayName: First stage for Android
-  jobs:
-  - job: Trigger_Build
-    displayName: Job1 for build
-    steps:
+  vmImage: ubuntu-latest
 
-
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          version=$(grep "versionName" ./app/build.gradle | sed -n '1p' | awk -F'"' '$0=$2')          
-          echo $version  
-          echo "##vso[task.setVariable variable=version]$version"
-      
-    - task: GithubRelease@0 
-      displayName: 'Create GitHub Release'      
-      inputs:
-       gitHubConnection: github.com_keshavray
-       repositoryName: keshavray/pipelines-android
-       action: create
-       target: '$(Build.SourceVersion)'
-       tagSource: manual
-       tag: "f2-$(tagValue)" 
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'testDevDebugUnitTest assembleDevRelease'
+  displayName: Gradle Build Task for Dev CI CD
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.apk'
+    targetFolder: '$(build.artifactStagingDirectory)'
+- task: PublishBuildArtifacts@1  
