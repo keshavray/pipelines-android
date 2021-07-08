@@ -21,4 +21,4 @@ steps:
     tasks: 'assembleDebug'
   displayName: Gradle Build Task for Dev CI CD
 
-- script: ls -l build/outputs/mapping
+- script: ls -l build/
