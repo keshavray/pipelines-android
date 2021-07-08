@@ -20,9 +20,5 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
   displayName: Gradle Build Task for Dev CI CD
-- task: CopyFiles@2
-  inputs:
-    contents: '**/*.apk'
-    targetFolder: '$(build.artifactStagingDirectory)'
-- task: PublishBuildArtifacts@1  
+
 - script: ls -l build/outputs/mapping
