@@ -21,4 +21,4 @@ steps:
     tasks: 'build'
   displayName: Gradle Build Task for Dev CI CD
 
-- script: ls -l build/generated
+- script: appcenter crashes upload-mappings --mapping mapping.txt --version-name dev  --version-code 2 --app "nile.ai/patient-app-and-dev" --token f6c7ad9d52df282ea294da014352dff25c3d7d82
