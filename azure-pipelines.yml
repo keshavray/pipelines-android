@@ -5,20 +5,15 @@ trigger: none
 pr: none
 
 pool:
-  vmImage: macos-latest
+  vmImage: ubuntu-latest
 
 steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'build'
-  displayName: Gradle Build Task for Dev CI CD
 
-- script: appcenter crashes upload-mappings --mapping mapping.txt --version-name dev  --version-code 2 --app "nile.ai/patient-app-and-dev" --token f6c7ad9d52df282ea294da014352dff25c3d7d82
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo $PROD_STORE_PASSWORD
+      echo $PROD_KEY_ALIAS
+      echo $PROD_KEY_PASSWORD
+  displayName: Printing vars
