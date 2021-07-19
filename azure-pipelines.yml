@@ -20,6 +20,7 @@ jobs:
 
   - bash: |
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-30;google_apis;x86'
+      $ANDROID_HOME/tools/bin/avdmanager list device
     displayName: 'install Android image'
 
   - script: |
@@ -28,6 +29,7 @@ jobs:
       echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n test_android_emulator -k 'system-images;android-30;google_apis;x86' --force
       echo '---'
       $ANDROID_HOME/emulator/emulator -list-avds
+      
     displayName: 'create AVD'
 
   - script: |
